@@ -42,8 +42,7 @@ Otro de los tipos más utilizados son los de tipo de fecha y hora, estos tipos s
 
 Éste tipo de dato es utilizado para evaluar un estado en verdadero o falso según la condición que necesitamos. En la siguiente tabla vemos una serie de valores para el campo «a» y el campo «b» y dos de las operaciones lógicas más utilizadas en el mundo informático, el resultado de estas operaciones da lugar a un estado u otro de un boolean type.
 
-<p align="center"><img src="./img/boolean.png" /></p>
-
+<p align="center"><img width="500" height="300" src="./img/boolean.png" /></p>
 
 ### JERARQUIA DE BASE DE DATOS
 
