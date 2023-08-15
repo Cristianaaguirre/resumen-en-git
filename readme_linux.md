@@ -1,6 +1,6 @@
 # RESUMEN DE LINUX
 
-* Temas principales
+* Primeros pasos
   - [La terminal](#la-terminal)
   - [Aprendiendo a caminar en la terminal](#aprendiendo-a-caminar-en-la-terminal)
   - [Manipulando archivos y directorios](#manipulando-archivos-y-directorios)
