@@ -147,7 +147,7 @@ También lo puedes poner al final, si quisieras buscar, todos los archivos que c
 ```bash
 ls -l txt*
 ```
-<br><br>
+<br>
 
 ***Buscar por cantidad de caracteres (?)***<br>
 Filtrar archivos que contengan solo un carácter después de la palabra especificada.<br>
@@ -160,7 +160,7 @@ Pero si sabes que no tiene un solo caracter, sino que tiene varios, entonces esc
 ```bash
 ls datos???
 ```
-<br><br>
+<br>
 
 ***Buscar por caracteres específicos ([])***<br>
 Si quieres buscar por varios caracteres específicos se usan corchetes. Para utilizarlos tienes que colocar dentro de los corchetes los caracteres que quieres buscar. Por ejemplo, si quisieras buscar los archivos que comiencen por las letras “c” o “i”, entonces escribes:<br>
@@ -178,7 +178,7 @@ Por último, si quieres buscar por rango de números también tienes que usar es
 ```bash
 ls -l foto[2-6]*
 ```
-<br><br>
+<br>
 
 ***Filtrar todos los archivos y directorios por funcion \[\[\]]***<br>
 Tambien pueden utilizarse ciertas funciones para buscar ya por mayusculas, minusculas o incluso si poseen numeros.<br>
