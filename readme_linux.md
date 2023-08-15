@@ -131,7 +131,7 @@ Las wildcards o comodines son una serie de caracteres especiales que nos permite
 
 Las wildcards te sirven para realizar seccionamiento de archivos o directorios, ademas de `ls` los wildcards tambien pueden usarse con cualquier comando que realice la manipulación de archivos como `mv`, `cp` y `rm`. Los tipos de wildcards son: 
 
-**Buscar todo (*)** <br>
+***Buscar todo (\*)***<br>
 El asterisco te ayuda a buscar toda la información dentro de una carpeta, pero puedes limitar su uso. Si por ejemplo quieres buscar los archivos que tengan una extensión “.png”, escribes: <br>
 ```bash
 ls -l *.png
@@ -142,7 +142,7 @@ ls -l *.png
 ```bash
 ls -l txt*
 ```
-**Buscar por cantidad de caracteres (?)**<br>
+***Buscar por cantidad de caracteres (?)***<br>
 Filtrar archivos que contengan solo un carácter después de la palabra especificada.<br>
 
 ```bash
@@ -154,7 +154,7 @@ ls datos?
 ```bash
 ls datos???
 ```
-**Buscar por caracteres específicos ([])**<br>
+***Buscar por caracteres específicos ([])***<br>
 Si quieres buscar por varios caracteres específicos se usan corchetes. Para utilizarlos tienes que colocar dentro de los corchetes los caracteres que quieres buscar. Por ejemplo, si quisieras buscar los archivos que comiencen por las letras “c” o “i”, entonces escribes:<br>
 
 ```bash
@@ -172,7 +172,7 @@ ls -l [cCiI]*
 ```bash
 ls -l foto[2-6]*
 ```
-**Filtrar todos los archivos y directorios por funcion []**<br>
+***Filtrar todos los archivos y directorios por funcion \[\[\]]***<br>
 Tambien pueden utilizarse ciertas funciones para buscar ya por mayusculas, minusculas o incluso si poseen numeros.<br><br>
 
 ```bash
