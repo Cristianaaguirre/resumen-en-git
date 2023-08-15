@@ -129,51 +129,51 @@ alias l="ls -lh"
 
 Las wildcards o comodines son una serie de caracteres especiales que nos permiten encontrar patrones o realizar búsquedas más avanzadas. Es aplicable para archivos y directorios.
 
-Las wildcards te sirven para realizar seccionamiento de archivos o directorios, ademas de `ls` los wildcards tambien pueden usarse con cualquier comando que realice la manipulación de archivos como `mv`, `cp` y `rm`.
+Las wildcards te sirven para realizar seccionamiento de archivos o directorios, ademas de `ls` los wildcards tambien pueden usarse con cualquier comando que realice la manipulación de archivos como `mv`, `cp` y `rm`. Los tipos de wildcards son: 
 
-* Tipos de wildcards
-  - **Buscar todo (*)**
-  El asterisco te ayuda a buscar toda la información dentro de una carpeta, pero puedes limitar su uso. Si por ejemplo quieres buscar los archivos que tengan una extensión “.png”, escribes:
-
+**Buscar todo (*)** <br>
+El asterisco te ayuda a buscar toda la información dentro de una carpeta, pero puedes limitar su uso. Si por ejemplo quieres buscar los archivos que tengan una extensión “.png”, escribes: <br>
 ```bash
 ls -l *.png
 ```
-  También lo puedes poner al final, si quisieras buscar, todos los archivos que comiencen por unos caracteres específicos, entonces escribes esos caracteres y luego el asterisco.
+  
+<br>También lo puedes poner al final, si quisieras buscar, todos los archivos que comiencen por unos caracteres específicos, entonces   escribes esos caracteres y luego el asterisco.<br>
 
 ```bash
 ls -l txt*
 ```
-  - **Buscar por cantidad de caracteres (?)**
-  Filtrar archivos que contengan solo un carácter después de la palabra especificada.
+**Buscar por cantidad de caracteres (?)**<br>
+Filtrar archivos que contengan solo un carácter después de la palabra especificada.<br>
 
 ```bash
 ls datos?
 ```
-  Pero si sabes que no tiene un solo caracter, sino que tiene varios, entonces escribes tantos signos de interrogación como caracteres existan.
+  
+<br>Pero si sabes que no tiene un solo caracter, sino que tiene varios, entonces escribes tantos signos de interrogación como caracteres existan.<br>
 
 ```bash
 ls datos???
 ```
-  - **Buscar por caracteres específicos ([])**
-  Si quieres buscar por varios caracteres específicos se usan corchetes. Para utilizarlos tienes que colocar dentro de los corchetes los caracteres que quieres buscar.
-  Por ejemplo, si quisieras buscar los archivos que comiencen por las letras “c” o “i”, entonces escribes:
+**Buscar por caracteres específicos ([])**<br>
+Si quieres buscar por varios caracteres específicos se usan corchetes. Para utilizarlos tienes que colocar dentro de los corchetes los caracteres que quieres buscar. Por ejemplo, si quisieras buscar los archivos que comiencen por las letras “c” o “i”, entonces escribes:<br>
 
 ```bash
 ls -l [ci]*
 ```
-  Lo que indica el comando es que busque los archivos que comiencen por la letra “c” o por la letra “i” y que tengan lo que sea por delante. Cuando buscamos con esta wildcard ten en cuenta que es case sensitive, por lo que la letra “i” no es lo mismo que la letra “I”.
+  
+<br>Lo que indica el comando es que busque los archivos que comiencen por la letra “c” o por la letra “i” y que tengan lo que sea por delante. Cuando buscamos con esta wildcard ten en cuenta que es case sensitive, por lo que la letra “i” no es lo mismo que la letra “I”.<br>
 
 ```bash
 ls -l [cCiI]*
 ```
-  Por último, si quieres buscar por rango de números también tienes que usar esta wildcard. Para hacerlo, escribe el rango de números que quieres buscar separados por un guion.
-
+  
+<br>Por último, si quieres buscar por rango de números también tienes que usar esta wildcard. Para hacerlo, escribe el rango de números que quieres buscar separados por un guion.<br>
+  
 ```bash
 ls -l foto[2-6]*
 ```
-  - **Filtrar todos los archivos y directorios por funcion []**
-
-  Tambien pueden utilizarse ciertas funciones para buscar ya por mayusculas, minusculas o incluso si poseen numeros.
+**Filtrar todos los archivos y directorios por funcion []**<br>
+Tambien pueden utilizarse ciertas funciones para buscar ya por mayusculas, minusculas o incluso si poseen numeros.<br><br>
 
 ```bash
 ls [[:upper:]]*
