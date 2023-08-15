@@ -1,6 +1,9 @@
 # RESUMEN DE SQL
 
-- [Data types o tipos de datos](#jerarquia-de-base-de-datos)
+* Temas principales
+  - [Data types o tipos de datos](#data-types-o-tipos-de-datos)
+  - [Jerarquia de base de datos](#jerarquia-de-base-de-datos)
+  - [Comandos utiles de postgres](#comandos-utiles-de-postgres)
 
 Postgres es un motor de bases de datos, existen tres conceptos importantes en torno a las bases de datos:
 
@@ -56,7 +59,7 @@ Toda jerarquía de base de datos se basa en los siguientes elementos:
 
   - **Tablas de base de datos**: Estructura que organiza los datos en filas y columnas formando una matriz.
 
-### COMANDO UTILES DE POSTGRES
+### COMANDOS UTILES DE POSTGRES
 
 PostgreSQL está más estrechamente acoplado al entorno UNIX que algunos otros sistemas de bases de datos, utiliza las cuentas de usuario nativas para determinar quién se conecta a ella (de forma predeterminada). El programa que se ejecuta en la consola y que permite ejecutar consultas y comandos se llama psql, psql es la terminal interactiva para trabajar con PostgreSQL, es la interfaz de línea de comando o consola principal, así como PgAdmin es la interfaz gráfica de usuario principal de PostgreSQL.
 
