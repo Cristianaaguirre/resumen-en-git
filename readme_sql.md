@@ -1,5 +1,7 @@
 # RESUMEN DE SQL
 
+- [Data types o tipos de datos](#jerarquia-de-base-de-datos)
+
 Postgres es un motor de bases de datos, existen tres conceptos importantes en torno a las bases de datos:
 
 * El lenguaje
