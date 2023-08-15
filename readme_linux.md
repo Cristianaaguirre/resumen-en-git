@@ -1,6 +1,12 @@
 # RESUMEN DE LINUX
 
-* Indices
+* Temas principales
+  - [¿Que es la terminal?](#¿que-es-la-terminal?)
+  - [Aprendiendo a caminar en la terminal](#aprendiendo-a-caminar-en-la-terminal)
+  - [Manipulando archivos y directorios](#manipulando-archivos-y-directorios)
+  - [Explorando el contenido de nuestros archivos](#explorando-el-contenido-de-nuestros-archivos)
+  - [¿Qué es un comando?](#¿que-es-un-comando?)
+  - [Wildcards](#wildcards)
 
 ### ¿Que es la terminal?
 
