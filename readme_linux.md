@@ -1,14 +1,14 @@
 # RESUMEN DE LINUX
 
 * Temas principales
-  - [¿Que es la terminal?](#¿que-es-la-terminal?)
+  - [La terminal](#la-terminal)
   - [Aprendiendo a caminar en la terminal](#aprendiendo-a-caminar-en-la-terminal)
   - [Manipulando archivos y directorios](#manipulando-archivos-y-directorios)
   - [Explorando el contenido de nuestros archivos](#explorando-el-contenido-de-nuestros-archivos)
-  - [¿Qué es un comando?](#¿qué-es-un-comando?)
+  - [Los comandos](#los-comandos)
   - [Wildcards](#wildcards)
 
-### ¿Que es la terminal?
+### La terminal
 
 La terminal es un programa que ejecuta líneas de comandos, que a su vez estas líneas de comando ejecutan acciones y aquí tienes que aprender dos conceptos: terminal y shell.
 
@@ -93,7 +93,7 @@ La terminal nos permite explorar archivos desde ella misma, así evitamos abrirl
 
 > 💡 Para detener un proceso que se esté ejecutando en la terminal basta con utilizar la combinación de teclas `ctrl + c` para interrumpirlo.
 
-### ¿Qué es un comando?
+### Los comandos
 
 Un comando es un mensaje enviado al ordenador que provoca una respuesta en este sistema y se comporta como una orden, pues informa al dispositivo informático que debe ejecutar una acción según la indicación que pueda enviarse.
 
