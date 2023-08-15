@@ -136,44 +136,46 @@ El asterisco te ayuda a buscar toda la información dentro de una carpeta, pero 
 ```bash
 ls -l *.png
 ```
-  
-<br>También lo puedes poner al final, si quisieras buscar, todos los archivos que comiencen por unos caracteres específicos, entonces   escribes esos caracteres y luego el asterisco.<br>
+También lo puedes poner al final, si quisieras buscar, todos los archivos que comiencen por unos caracteres específicos, entonces   escribes esos caracteres y luego el asterisco.<br>
 
 ```bash
 ls -l txt*
 ```
+<br><br>
+
 ***Buscar por cantidad de caracteres (?)***<br>
 Filtrar archivos que contengan solo un carácter después de la palabra especificada.<br>
 
 ```bash
 ls datos?
 ```
-  
-<br>Pero si sabes que no tiene un solo caracter, sino que tiene varios, entonces escribes tantos signos de interrogación como caracteres existan.<br>
+Pero si sabes que no tiene un solo caracter, sino que tiene varios, entonces escribes tantos signos de interrogación como caracteres existan.<br>
 
 ```bash
 ls datos???
 ```
+<br><br>
+
 ***Buscar por caracteres específicos ([])***<br>
 Si quieres buscar por varios caracteres específicos se usan corchetes. Para utilizarlos tienes que colocar dentro de los corchetes los caracteres que quieres buscar. Por ejemplo, si quisieras buscar los archivos que comiencen por las letras “c” o “i”, entonces escribes:<br>
 
 ```bash
 ls -l [ci]*
 ```
-  
-<br>Lo que indica el comando es que busque los archivos que comiencen por la letra “c” o por la letra “i” y que tengan lo que sea por delante. Cuando buscamos con esta wildcard ten en cuenta que es case sensitive, por lo que la letra “i” no es lo mismo que la letra “I”.<br>
+Lo que indica el comando es que busque los archivos que comiencen por la letra “c” o por la letra “i” y que tengan lo que sea por delante. Cuando buscamos con esta wildcard ten en cuenta que es case sensitive, por lo que la letra “i” no es lo mismo que la letra “I”.<br>
 
 ```bash
 ls -l [cCiI]*
 ```
-  
-<br>Por último, si quieres buscar por rango de números también tienes que usar esta wildcard. Para hacerlo, escribe el rango de números que quieres buscar separados por un guion.<br>
+Por último, si quieres buscar por rango de números también tienes que usar esta wildcard. Para hacerlo, escribe el rango de números que quieres buscar separados por un guion.<br>
   
 ```bash
 ls -l foto[2-6]*
 ```
+<br><br>
+
 ***Filtrar todos los archivos y directorios por funcion \[\[\]]***<br>
-Tambien pueden utilizarse ciertas funciones para buscar ya por mayusculas, minusculas o incluso si poseen numeros.<br><br>
+Tambien pueden utilizarse ciertas funciones para buscar ya por mayusculas, minusculas o incluso si poseen numeros.<br>
 
 ```bash
 ls [[:upper:]]*
