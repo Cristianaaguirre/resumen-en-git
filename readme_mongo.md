@@ -30,12 +30,12 @@ A diferencia de las bases de datos relacionales, en las bases de datos orientada
 
 ```js
 {
-  _id : "5c8eccc1caa187d17ca6ed16", <-- field : value
-  name : 'Sue',                     <-- field : value
-  age : 26,                         <-- field : value
-  status : 'A',                     <-- field : value
-  groups : ['new', 'sports'],       <-- field : value
-  loc : {                           <-- field : value
+  _id : "5c8eccc1caa187d17ca6ed16",
+  name : 'Sue',
+  age : 26,
+  status : 'A',
+  groups : ['new', 'sports'],
+  loc : {
     y : 33.33111,
     x : 86.23123
   }
@@ -43,7 +43,9 @@ A diferencia de las bases de datos relacionales, en las bases de datos orientada
 ```
 Las Colecciones es la forma en que guardamos esos documentos y que normalmente comparten datos entre si, o al menos sabemos que tenemos una entidad o un modelo de datos que se relacionan. MongoDB almacena documentos en una colección, usualmente con campos comunes entre si.
 
-<p aling="center"><img width="500" height="300" src="./img/mongo.webp"/></p>
+<p align="center">
+  <img width="500" height="300" src="./img/mongo.webp"/>
+</p>
 
 #### Ventajas y Desventajas
 
