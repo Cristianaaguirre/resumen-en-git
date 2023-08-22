@@ -326,3 +326,50 @@ cd proyectos || cambia-carpeta proyectos && mkdir textos
 | & | Ejecuta de forma asíncrona los comandos específicados | 
 | && | Ejecuta el comando si el anterior se ejecutó correctamente | 
 | \|\| | Ejecuta el comando si el anterior o la combinación de los anteriores resultaron en verdadero |
+
+### Permisos en los archivos
+
+Los permisos son las capacidades que tiene cada usuario dentro del sistema operativo, no todos los usuarios pueden hacer todas las acciones sobre ciertos archivos y carpetas.
+
+Cuando listamos archivos utilizando el comando ls -l la primera columna que nos aparece es la de permisos.
+
+```shell
+-rw-r--r-- 1 cristian cristian 1.2K Aug 22 16:46 asda.txt
+drwxr-xr-x 2 cristian cristian 4.0K Aug 22 10:07 documento_a_comprimir
+-rw-r--r-- 1 cristian cristian  102 Aug 22 16:14 error.txt
+```
+
+Existen diferentes tipos de archivos y al comienzo de cada uno se determina el tipo de archivo:
+
+| Atributo | Tipo de archivo | 
+| --- | --- | 
+| - | Es un archivo normal, como un documento de texto, una foto, un video, etc. | 
+| d | Por directory es un directorio | 
+| l | Es un enlace simbólico | 
+| b | Bloque especial, son archivos que manejan información para el sistema, como la información de un disco duro |
+
+Para entender cada una de estas lineas, debemos entender que existen tres tipos de usuarios distintos:
+
+- Owner : el dueño del archivo, si no se ha cambiado, es quien lo creo y tiene mayor jerarquía sobre los otros 3. Le corresponden los primeros 3 caracteres de los permisos.
+- Group : Se puede crear grupos de usuarios para darle a todos o varios los mismos permisos. A estos usuarios le corresponden el cuarto, quinto y sexto caracter de los permisos de usuarios y tienen mayor jerarquía que el último.
+- World : También llamado "otros", es cualquier otro usuario que no pertenezca a un grupo de usuario y tampoco sea el dueño, este tiene la menor jerarquía.
+
+> Los usuarios son complejos e incluso es arduo entender y configurar en un entorno a los usuarios. Por el momento, solo es necesario entender que es lo que leemos en dichas lineas.
+
+De esta manera podemos establecer una tabla con los permisos:
+
+| Símbolo | Significado | Permiso | 
+| --- | --- | --- | 
+| r | readable | Significa que puede leer su contenido | 
+| w | writable | El usuario puede editar el contenido del archivo, también el nombre y los permisos | 
+| x | executable | El usuario puede ejecutarlo en caso de que sea un programa |
+
+Por ejemplo analicemos la siguiente linea: `drwxr-xr-x`
+
+| d | rwx | r-x | r-x | 
+| --- | --- | --- | --- | 
+| Esto es un directorio | owner | group | world | 
+|| El dueño puede leer, escribir y ejecutar | El grupo puede leer y ejecutar | Los demás pueden leer y ejecutar |
+
+<p align='center'><img width="450" height="300" src='./img/permisos.webp' /></p>
+
