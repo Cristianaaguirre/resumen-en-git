@@ -336,7 +336,6 @@ cd proyectos || cambia-carpeta proyectos && mkdir textos
 | & | Ejecuta de forma asíncrona los comandos específicados | 
 | && | Ejecuta el comando si el anterior se ejecutó correctamente | 
 | \|\| | Ejecuta el comando si el anterior o la combinación de los anteriores resultaron en verdadero |
-<<<<<<< HEAD
 
 ### Permisos en los archivos
 
@@ -383,6 +382,3 @@ Por ejemplo analicemos la siguiente linea: `drwxr-xr-x`
 || El dueño puede leer, escribir y ejecutar | El grupo puede leer y ejecutar | Los demás pueden leer y ejecutar |
 
 <p align='center'><img width="450" height="300" src='./img/permisos.webp' /></p>
-
-=======
->>>>>>> 36a5adfa5331d5451c902b8dc5d0426a16586d8b
