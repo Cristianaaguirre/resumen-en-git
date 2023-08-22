@@ -187,3 +187,59 @@ Tambien pueden utilizarse ciertas funciones para buscar ya por mayusculas, minus
 ls [[:upper:]]*
 ls [[:lower:]]*
 ```
+### Redirecciones: cómo funciona la shell
+
+En la consola nosotros generamos una entrada cuando escribimos y una salida casi siempre que ejecutamos un comando.
+
+A las entradas típicamente se les suele llamar *Standard Input* y a las salidas *Standard Output*, además se les suele abreviar como **stdin** y **stdout** respectivamente, pero tambien existe un *Standard Error* o **stderr**. Cada uno de ellos tiene un numero de operacion o **file descriptor**:
+
+* stdin -> 0
+* stdout -> 1
+* stderr -> 2
+
+<p aling='center'><img width="500" height="300" src="./img/shell.webp"/></p>
+
+Cada vez que trabajamos con la terminal estamos generando inputs y outputs, por ejemplo:
+
+```shell
+ls -lh
+```
+
+Aqui el comando (Standar input) obtiene una lista de archivos (Standar output). Ahora, podriamos evitar que esa informacion termine en la consola y redirigirla a un archivo. Por suerte tenemos el operador `>` con el cual podemos redirigir todo a un archivo de texto, por ejemplo:
+
+```shell
+ls -lh > output.txt
+```
+
+Ahora, un detalle particular del operador `>` es que sobreescribe la informacion. Esto significa que si en el archivo `output.txt` ya contiene informacion, sera reemplazada. Para evitar que esto suceda, en caso que asi sea necesario, podemos utilizar el operador `>>`
+
+```shell
+ls -lh >> output.txt
+```
+
+Pero, ¿que pasa si intentamos redireccionar un error?, como dijimos un **stdin** y un **stdout** poseen un file descriptior de 0 y 1 respectivamente. Pero los errores poseen su propio file descriptor que es **stderr** que es el 2. Por ejemplo, supongamos que tratamos de redireccionar una lista de archivos con un error de sintaxis en el comando `ls`:
+
+```shell
+ls -lñ
+```
+
+Para capturar el error y poder redirigirlo debemos aplicar el operador `2>`
+
+```shell
+ls -lñ > output.txt 2> errors.txt
+```
+
+Incluso podemos capturar dentro del mismo archivo tanto las operaciones exitosas como los posibles errores.
+
+```shell
+ls -l output.txt 2>&1
+```
+
+#### Tabla de operadores
+
+| Operador | Función | 
+| --- | --- | 
+| > | Redirecciona la salida. Por defecto redirecciona el Standar Output | 
+| >> | Concatena la salida con lo que ya tenga el archivo a donde se está redirigiendo la salida | 
+| 2> | Redirecciona el file descriptor 2 (En este caso Standar Error) | 
+| 2>&1 | Redirecciona el file descriptor 2 y 1 |
