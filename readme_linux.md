@@ -8,7 +8,7 @@
   - [Los comandos](#los-comandos)
   - [Wildcards](#wildcards)
 * Redireccion, permisos, comandos de busqueda
-  - [Redireccionamiento](#redirecciones-cómo-funciona-la-shell)
+  - [Redireccionamiento](#redirecciones-como-funciona-la-shell)
   - [Pipe Operator](#redirecciones-como-funciona-la-shell)
   - [Operadores de control](#encadenando-comandos-operadores-de-control)
 
