@@ -7,6 +7,10 @@
   - [Explorando el contenido de nuestros archivos](#explorando-el-contenido-de-nuestros-archivos)
   - [Los comandos](#los-comandos)
   - [Wildcards](#wildcards)
+* Redireccion, permisos, comandos de busqueda
+  - [Redireccionamiento](#redirecciones-cómo-funciona-la-shell)
+  - [Pipe Operator](#redirecciones-cómo-funciona-la-shell)
+  - [Operadores de control](#encadenando-comandos-operadores-de-control)
 
 ### La terminal
 
@@ -247,3 +251,78 @@ ls -l output.txt 2>&1
 | >> | Concatena la salida con lo que ya tenga el archivo a donde se está redirigiendo la salida | 
 | 2> | Redirecciona el file descriptor 2 (En este caso Standar Error) | 
 | 2>&1 | Redirecciona el file descriptor 2 y 1 |
+
+### Redirecciones: pipe operator
+
+Un *pipe* es un flujo de datos que circula entre dos procesos que, o bien están estrechamente vinculados, o no tienen un origen común. Esto quiere decir que el resultado arrojado por un programa servirá como entrada para otro programa. Esto te permite, entre otras cosas, dividir grandes problemas en problemas más pequeños y así obtener una mejor visión de conjunto.
+
+La sintaxis de pipes:
+
+```
+Comando-1 | Comando-2 | ... | Comando-N
+``` 
+> La gran diferencia de un redireccionamiento a travez del operador `>` es que los pipe operator permiten concatenar multiples comandos.
+
+```shell
+cat contents.txt | grep file
+0 Aug  9 13:55  file1
+0 Aug  9 13:55  file2
+0 Aug  9 13:55  file3
+0 Aug  9 13:55  file4
+0 Aug  9 13:55  file5
+```
+
+```shell
+ls -lh | tee texto.txt | sort | less
+```
+
+#### Tabla de operadores
+
+| Operador | Función | 
+| --- | --- |
+| cat | permite concatenar el contenido de dos archivos de texto, tambien crear nuevos archivos e ingresar informacion en ellos |
+| tee | permite leer un `stdin` y pasar esta informacion como un `stdout` |
+| sort | Organiza allfabéticamente una salida | 
+
+> estos operadores son sumamente amplios y pueden ser usados de diferentes maneras, como por ejemplo el operador `tee`
+
+### Encadenando comandos: operadores de control
+
+Los operadores de control son símbolos reservados por la terminal que nos permiten encadenar comandos.
+
+Si usas constantemente la tecla enter para ejecutar varios comandos, puedes evitarlo si usas el operador `;` que separa los comandos que estamos ejecutando.
+
+```shell
+mkdir proyectos; ls; datos
+```
+
+Pero si observamos con atencion, el operador `;` nos permite ejecutar varios comandos en una sola linea de forma *sincrona*. En ocasiones necesitamos ejecutar comandos al mismo tiempo sin esperar que se ejecuten uno detras del otro.
+
+El operador `&` nos permite ejecutar varios comandos de manera asincrona
+
+```shell
+date & echo 'hola' & cal
+```
+
+En ocasiones necesitamos ejectuar comandos en base a ciertas condiciones.
+
+El operador `&&` nos permite escribir varios comandos que se ejectuan en orden si y solo si el anterior comando se ha ejecutado con exito. De no ser asi, sera interrumpido el proceso.
+
+```shell
+cd proyectos && cat textos.txt && ls
+```
+
+De forma contraria contamos con el operador `||` el cual ira ejecutando de forma ordenada todos los comandos sin importar si se lanzaron de forma correcta o no.
+
+```shell
+cd proyectos || cambia-carpeta proyectos && mkdir textos
+```
+
+#### Tabla de operadores
+
+| Operador | Función | 
+| --- | --- | 
+| ; | Ejecuta de forma síncrona los comandos específicados | 
+| & | Ejecuta de forma asíncrona los comandos específicados | 
+| && | Ejecuta el comando si el anterior se ejecutó correctamente | 
+| \|\| | Ejecuta el comando si el anterior o la combinación de los anteriores resultaron en verdadero |
