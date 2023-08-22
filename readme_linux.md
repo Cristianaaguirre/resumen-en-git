@@ -9,8 +9,12 @@
   - [Wildcards](#wildcards)
 * Redireccion, permisos, comandos de busqueda
   - [Redireccionamiento](#redirecciones-cómo-funciona-la-shell)
-  - [Pipe Operator](#redirecciones-cómo-funciona-la-shell)
+  - [Pipe Operator](#redirecciones-como-funciona-la-shell)
   - [Operadores de control](#encadenando-comandos-operadores-de-control)
+
+<br>
+
+## Primeros pasos
 
 ### La terminal
 
@@ -138,6 +142,12 @@ alias l="ls -lh"
   | man <comando> | De manual, nos permite conocer mucha más información de un comando. |
   | info <comando> | Similar al anterior, pero un poco resumido y con otro formato. |
   | whatis <comando> | Describe un comando en una sola línea ☺️. No funciona con todos. |
+  
+<br>
+
+<hr>
+
+## Redireccion, permisos, comandos de busqueda
 
 ### Wildcards
 
@@ -195,7 +205,7 @@ Tambien pueden utilizarse ciertas funciones para buscar ya por mayusculas, minus
 ls [[:upper:]]*
 ls [[:lower:]]*
 ```
-### Redirecciones: cómo funciona la shell
+### Redirecciones: como funciona la shell
 
 En la consola nosotros generamos una entrada cuando escribimos y una salida casi siempre que ejecutamos un comando.
 
