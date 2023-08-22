@@ -25,7 +25,9 @@ Además, hay casos en los que no cuentas con una interfaz gráfica o también pu
 
 El sistema de archivos, será el árbol por el que nos estaremos moviendo en la terminal.
 
-<p aling='center'><img width="500" height="300" src="./img/carpetas.png"/></p>
+<p align='center'>
+  <img width="450" height="300" src="./img/carpetas.png"/>
+</p>
 
 Aquí se encuentran los archivos del sistema operativo, así como también los ejecutables, controladores, archivos de configuración, etcétera.
 
@@ -99,7 +101,9 @@ Un comando es un mensaje enviado al ordenador que provoca una respuesta en este 
 
 Cada sistema operativo incorpora un determinado número de comandos básicos, que permiten ejecutar las tareas más simples con órdenes directas. A continuación conocerás todo lo relacionado con sistemas operativos basados en UNIX y sus comandos básicos en la terminal.
 
-<p aling='center'><img width="500" height="300" src="./img/comandos.webp"/></p>
+<p align='center'>
+  <img width="450" height="300" src="./img/comandos.webp"/>
+</p>
 
 Un comando puede ser cuatro cosas:
 
@@ -197,7 +201,7 @@ A las entradas típicamente se les suele llamar *Standard Input* y a las salidas
 * stdout -> 1
 * stderr -> 2
 
-<p aling='center'><img width="500" height="300" src="./img/shell.webp"/></p>
+<p align='center'><img width="450" height="300" src="./img/shell.webp"/></p>
 
 Cada vez que trabajamos con la terminal estamos generando inputs y outputs, por ejemplo:
 
