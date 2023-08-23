@@ -1,10 +1,14 @@
 # RESUMEN DE MONGODB
 
-* Primeros Pasos
+* ¿Que son las bases de datos NoSQL?
   - [Las bases de datos no relacionales](#las-bases-de-datos-no-relacionales)
   - [Tipos de bases de datos NoSQL](#tipos-de-bases-de-datos-nosql)
   - [Bases de datos documentales](#bases-de-datos-documentales)
   - [Ventajas y Desventajas](#ventajas-y-desventajas)
+* CRUD con MongoDB
+  - [Creando una coleccion]()
+
+## ¿Que son las bases de datos NoSQL?
 
 ### Las bases de datos No Relacionales
 
@@ -47,7 +51,7 @@ Las Colecciones es la forma en que guardamos esos documentos y que normalmente c
   <img width="500" height="300" src="./img/mongo.webp"/>
 </p>
 
-#### Ventajas y Desventajas
+### Ventajas y Desventajas
 
 * Ventajas
   - Permiten almacenar y consultar información semiestructurada sin una estructura definida.
@@ -61,5 +65,73 @@ Las Colecciones es la forma en que guardamos esos documentos y que normalmente c
   - No siempre pueden garantizar las propiedades ACID de atomicidad, consistencia, integridad y durabilidad.
   - No tienen una gran comunidad detrás y existen mucha menos información acerca de estas bases de datos.
   - Los índices pueden ocupar mucha memoria RAM, sobre todo en las bases documentales que manejan un gran volumen de datos.
+
+<hr>
+<br>
+
+## CRUD con MongoDB
+
+### Creando una coleccion
+
+Antes de crear cualquier coleccion es importante saber en cual nos encontramos, para ello podemos usar el comando `db` que nos indica dentro de que coleccion nos encontramos. Tambien podemos usar el comand `show dbs` para listar todas las colecciones. Si alguna coleccion no posee documentos dentro de ella, no sera listada mediante este comando
+
+<div align='center'><img width="400" height="300" src='./img/mongo-1.png' /></div>
+
+> para este caso utilizaremos un contenedor docker donde se levantara una imagen de mongodb, para acceder a ella debemos ejecutar el comando `docker exec -it [nombre del contendor] mongosh`
+
+Para usar una coleccion o crear una nueva, basta con usar el comando `use()`.
+
+```js
+use('nombre de la base de datos')
+```
+
+Aunque tambien podemos utilizar el comando `db.createCollection()`, con este comando puede crearse una coleccion e incluso tenemos el control de la configuracion de la misma.
+
+```js
+db.createCollection("mySecondCollection", {capped : true, size : 2, max : 2})
+```
+
+> Las configuraciones son variadas y requiere de una lectura minuciosa, por el momento solo optaremos por el comando `use()` que trae consigo una configuracion predeterminada
+
+### Operaciones CRUD: create, readme, update, delete
+
+* Para insertar datos disponemos de tres opciones:
+
+  1. `insertOne()`
+
+    ```js
+    db.myCollection.insertOne()
+    ```
+
+  2. `insertMany()`
+
+    ```js
+    db.myCollection.insertMany([
+    {
+      "name": "navindu", 
+      "age": 22
+    },
+    {
+      "name": "kavindu", 
+      "age": 20
+    },
+
+    {
+      "name": "john doe", 
+      "age": 25,
+      "location": "colombo"
+    }
+    ])
+    ```
+
+  3. `insert()` es similar al `insertMany()`
+
+* Para buscar documentos en las colecciones disponemos del comando `find()`
+
+  `db.myCollection.find()`
+
+  A traves de este comando tambien podemos filtrar
+
+
 
 
