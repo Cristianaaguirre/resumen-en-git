@@ -48,7 +48,7 @@ A diferencia de las bases de datos relacionales, en las bases de datos orientada
 Las Colecciones es la forma en que guardamos esos documentos y que normalmente comparten datos entre si, o al menos sabemos que tenemos una entidad o un modelo de datos que se relacionan. MongoDB almacena documentos en una colección, usualmente con campos comunes entre si.
 
 <p align="center">
-  <img width="500" height="300" src="./img/mongo.webp"/>
+  <img width="350" height="280" src="./img/mongo.webp"/>
 </p>
 
 ### Ventajas y Desventajas
@@ -75,7 +75,9 @@ Las Colecciones es la forma en que guardamos esos documentos y que normalmente c
 
 Antes de crear cualquier coleccion es importante saber en cual nos encontramos, para ello podemos usar el comando `db` que nos indica dentro de que coleccion nos encontramos. Tambien podemos usar el comand `show dbs` para listar todas las colecciones. Si alguna coleccion no posee documentos dentro de ella, no sera listada mediante este comando
 
-<div align='center'><img width="400" height="300" src='./img/mongo-1.png' /></div>
+<div align='center'><img width="300" height="200" src='./img/mongo-1.png' /></div>
+
+<br>
 
 > para este caso utilizaremos un contenedor docker donde se levantara una imagen de mongodb, para acceder a ella debemos ejecutar el comando `docker exec -it [nombre del contendor] mongosh`
 
@@ -98,13 +100,15 @@ db.createCollection("mySecondCollection", {capped : true, size : 2, max : 2})
 * Para insertar datos disponemos de tres opciones:
 
   1. `insertOne()`
-
+    <br>
+    
     ```js
     db.myCollection.insertOne()
     ```
 
   2. `insertMany()`
-
+    <br>
+    
     ```js
     db.myCollection.insertMany([
     {
@@ -127,8 +131,10 @@ db.createCollection("mySecondCollection", {capped : true, size : 2, max : 2})
   3. `insert()` es similar al `insertMany()`
 
 * Para buscar documentos en las colecciones disponemos del comando `find()`
-
-  `db.myCollection.find()`
+  <br>
+  ```js
+  db.myCollection.find()
+  ```
 
   A traves de este comando tambien podemos filtrar
 
