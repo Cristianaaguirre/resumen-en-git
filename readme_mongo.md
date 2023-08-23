@@ -1,6 +1,6 @@
 # RESUMEN DE MONGODB
 
-* Indice
+* Primeros Pasos
   - [Las bases de datos no relacionales](#las-bases-de-datos-no-relacionales)
   - [Tipos de bases de datos NoSQL](#tipos-de-bases-de-datos-nosql)
   - [Bases de datos documentales](#bases-de-datos-documentales)

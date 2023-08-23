@@ -11,6 +11,8 @@
   - [Redireccionamiento](#redirecciones-como-funciona-la-shell)
   - [Pipe Operator](#redirecciones-como-funciona-la-shell)
   - [Operadores de control](#encadenando-comandos-operadores-de-control)
+  - [Permisos de usuario](#permisos-de-usuario)
+  - [Modificando los permisos]()
 
 <br>
 
@@ -337,7 +339,7 @@ cd proyectos || cambia-carpeta proyectos && mkdir textos
 | && | Ejecuta el comando si el anterior se ejecutó correctamente | 
 | \|\| | Ejecuta el comando si el anterior o la combinación de los anteriores resultaron en verdadero |
 
-### Permisos en los archivos
+### Permisos de usuario
 
 Los permisos son las capacidades que tiene cada usuario dentro del sistema operativo, no todos los usuarios pueden hacer todas las acciones sobre ciertos archivos y carpetas.
 
@@ -382,3 +384,51 @@ Por ejemplo analicemos la siguiente linea: `drwxr-xr-x`
 || El dueño puede leer, escribir y ejecutar | El grupo puede leer y ejecutar | Los demás pueden leer y ejecutar |
 
 <p align='center'><img width="450" height="300" src='./img/permisos.webp' /></p>
+
+### Modificando los permisos
+
+Con el comando chmod podemos cambiar los permisos de los archivos de dos formas, una es usando los símbolos (rwx) y otra es con el sistema octal.
+
+Es bastante sencillo cambiar los permisos de forma simbólica. Para esto, hay que escribir después del comando `chmod` el símbolo del usuario, luego el operador y por último el permiso que quieres agregar o quitar.
+
+```
+chmod [simboloDelUsuario][operador][permiso] [archivoParaCambiarSusPermisos]
+```
+
+**Tabla de usuarios**
+
+| owner | group | others | 
+| --- | --- | --- | 
+| u | g | o |
+
+**Tabla de operadores**
+
+| Operador | Función | 
+| --- | --- | 
+| + | Añade un permiso | 
+| - | Quita un permiso | 
+| = | Asigna un permiso |
+
+Tomemos como ejemplo la siguiente linea:
+
+```shell
+-rw-r--r-- 1 cristian cristian 1.2K Aug 22 16:46 asda.txt
+```
+
+Si quisieramos añadirle los permisos de escritura al grupo debemos ejectuar el siguiente comando:
+
+```shell
+chmod g+w asda.txt
+
+-rw-rw-r-- 1 cristian cristian 1.2K Aug 22 16:46 asda.txt
+```
+
+Incluso podemos modificar varios permisos:
+
+```shell
+chmod g+w,o+w asda.txt
+
+-rw-rw-rw- 1 cristian cristian 1.2K Aug 22 16:46 asda.txt
+```
+
+> En ocasiones podemos crear archivos y ceder los permisos a otro usuario, el comando `chown` que significa **change owner**, nos permite establecer un nuevo **'dueño'** y la sintaxis el realmente simple: chown [usuario al que pertenece] [archivo].
