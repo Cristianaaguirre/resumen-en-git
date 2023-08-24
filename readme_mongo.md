@@ -6,7 +6,11 @@
   - [Bases de datos documentales](#bases-de-datos-documentales)
   - [Ventajas y Desventajas](#ventajas-y-desventajas)
 * CRUD con MongoDB
-  - [Creando una coleccion]()
+  - [Creando una coleccion](#creando-una-coleccion)
+  - [CRUD: create, read, update, delete](#crud-create-read-update-delete)
+  - [Operadores para actualizar arrays](#operadores-para-actualizar-arrays)
+* Operadores especiales
+  - [Operadores $eq y $ne]()
 
 ## ¿Que son las bases de datos NoSQL?
 
@@ -95,7 +99,7 @@ db.createCollection("mySecondCollection", {capped : true, size : 2, max : 2})
 
 > Las configuraciones son variadas y requiere de una lectura minuciosa, por el momento solo optaremos por el comando `use()` que trae consigo una configuracion predeterminada
 
-### Operaciones CRUD: create, readme, update, delete
+### CRUD: create, read, update, delete
 
 * Para insertar datos disponemos de tres opciones:
 
@@ -139,7 +143,9 @@ db.createCollection("mySecondCollection", {capped : true, size : 2, max : 2})
   A traves de este comando tambien podemos filtrar en base al criterio que dispongamos:
 
   ```js
-  db.myCollection.find( { name : 'name' , age : 10} )
+  db.myCollection.find( 
+    { name : 'name' , age : 10} 
+  )
   ```
 
 * Para actualizar un documento dentro de la coleccion disponemos de tres comandos:
@@ -148,21 +154,30 @@ db.createCollection("mySecondCollection", {capped : true, size : 2, max : 2})
   <br>
 
   ```js
-  db.myCollection.update({_id : 1}, { $set : { city : 'Salta' } } )
+  db.myCollection.update(
+    {_id : 1}, 
+    { $set : { city : 'Salta' } } 
+    )
   ```
 
   2. `updateMany()` actualiza uno o más documentos que se encuentren en el filtro de la función.
   <br>
 
   ```js
-  db.myCollection.updateMany( {age : 15}, { $inc : { age : 1 } } )
+  db.myCollection.updateMany( 
+    {age : 15}, 
+    { $inc : { age : 1 } } 
+  )
   ```
 
   3. `updateOne()` actualiza el primer documento que pase el filtro de la función.
   <br>
 
   ```js
-  db.myCollection.updateOne( {_id : 2}, { $rename : { age : 'edad' } } )
+  db.myCollection.updateOne( 
+    {_id : 2}, 
+    { $rename : { age : 'edad' } } 
+  )
   ```
 
   Existen multiples operadores para realizar modificaciones, como es el caso del `$set`, aqui se dejan algunos ejemplos:
@@ -178,7 +193,121 @@ db.createCollection("mySecondCollection", {capped : true, size : 2, max : 2})
   | $max | Actualiza el valor de un atributo con el valor máximo especificado, sólo si el valor actual es menor que el valor especificado. |
   | $currentDate | Establece el valor de un atributo como la fecha y hora actual. |
 
+  > Un configuracion interesante en las actualizaciones de documentos es el upsert, sea chequea si un documento ya existe en la coleccion con los parametros de busqueda, de ser asi lo actualiza, sino, insertara un documento nuevo.
 
+  ```js
+  db.sensor_collection.updateOne(
+    {
+      sensor : 'A001',
+      date : '2022-01-04'
+    },
+    {
+      $push : {
+        readings : 123
+      }
+    },
+    {
+    upsert : true
+    }
+  )
+  ```
+  <br>
+
+* Para eliminar documentos dentro de una coleccion disponemos de dos comandos principales:
+  <br>
+
+  - El comando `deleteOne()` que elimina el primer documento que pase el filtro de la función.
+  <br>
+
+  ```js
+  db.myCollection.deleteOne( 
+    {_id : 2}
+  )
+  ```
+  <br>
+
+  - El comando `deleteMany()` que elimina uno o más documentos que se encuentren en el filtro de la función.
+
+  ```js
+  db.myCollection.deleteMany(
+    { price : 200 }
+  )
+  ```
+
+  > Cabe remarcar que en muchas ocasiones se menciona el operador `drop()` para eliminar todos los documentos de una coleccion, el problema es que este operador tambien elimina la coleccion. Si no se desea eliminar la coleccion, tambien podemos usar el comando `deleteMany()` con un objeto vacio dentro de él, es decir, que no hay parametros de filtro por lo cual se eliminan todos los documentos. Tambien existe el comando `remove()` que cumple con la misma funcion.
+
+  <br>
+
+### Operadores para actualizar arrays
+
+Existen dos operadores principales a la hora de actualizar arrays, `$push` y `$pull`, como sus nombres lo indican push nos permite insertar elementos dentro de un array y pull nos permite extraer elementos dentro de un array. Pero cada uno de ellos necesita de operadores adicionales para funcionar correctamente.
+
+- `$push`:
+  <br>
+
+  ```js
+  db.myCollection.update(
+    { _id : 1 },
+    {
+      $push : {
+        tags : 'nuevo elemento'
+      }
+    }
+  )
+  ```
+  <br>
+
+  Si necesitamos agregar mas de un elemento al array, debemos utilizar el operador `$each`:
+  <br>
+
+  ```js
+  db.myCollection.update(
+    { _id : 1 },
+    {
+      $push : {
+        tags : {
+          $each : ['1er elemento', '2do elemento']
+        }
+      }
+    }
+  )
+  ```
+  <br>
+- `$pull`:
+  <br>
+
+  ```js
+  db.myCollection.update(
+    { _id : 1 },
+    {
+      $pull : {
+        tags : 'elemento a eliminar'
+      }
+    }
+  )
+  ```
+  <br>
+
+  Ahora si lo que necesitamos es eliminar mas de un elemento, debemos utilizar el operador `$in`:
+  <br>
+
+  ```js
+  db.myCollection.update(
+    { _id : 1 },
+    {
+      $pull : {
+        tags : {
+          $in : ['1er elemento', '2do elemento']
+        }
+      }
+    }
+  )
+  ```
+  <br>
+
+## Operadores Especiales
+
+### Operadores $eq y $ne
 
 
 

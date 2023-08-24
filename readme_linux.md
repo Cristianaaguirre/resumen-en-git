@@ -12,7 +12,7 @@
   - [Pipe Operator](#redirecciones-como-funciona-la-shell)
   - [Operadores de control](#encadenando-comandos-operadores-de-control)
   - [Permisos de usuario](#permisos-de-usuario)
-  - [Modificando los permisos]()
+  - [Modificando los permisos](#modificando-los-permisos)
 
 <br>
 
