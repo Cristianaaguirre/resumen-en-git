@@ -136,7 +136,48 @@ db.createCollection("mySecondCollection", {capped : true, size : 2, max : 2})
   db.myCollection.find()
   ```
 
-  A traves de este comando tambien podemos filtrar
+  A traves de este comando tambien podemos filtrar en base al criterio que dispongamos:
+
+  ```js
+  db.myCollection.find( { name : 'name' , age : 10} )
+  ```
+
+* Para actualizar un documento dentro de la coleccion disponemos de tres comandos:
+
+  1. `update()` actualiza los documentos existentes en una coleccion
+  <br>
+
+  ```js
+  db.myCollection.update({_id : 1}, { $set : { city : 'Salta' } } )
+  ```
+
+  2. `updateMany()` actualiza uno o más documentos que se encuentren en el filtro de la función.
+  <br>
+
+  ```js
+  db.myCollection.updateMany( {age : 15}, { $inc : { age : 1 } } )
+  ```
+
+  3. `updateOne()` actualiza el primer documento que pase el filtro de la función.
+  <br>
+
+  ```js
+  db.myCollection.updateOne( {_id : 2}, { $rename : { age : 'edad' } } )
+  ```
+
+  Existen multiples operadores para realizar modificaciones, como es el caso del `$set`, aqui se dejan algunos ejemplos:
+
+  | Operador | Funcion |
+  | --- | --- |
+  | $inc | Incrementa el valor de un atributo numérico en una cantidad específica. |
+  | $mul | Multiplica el valor de un atributo numérico por un factor específico. |
+  | $rename | Cambia el nombre de un atributo. |
+  | $set | Asigna un valor específico a un atributo. Si este valor no existe, sera creado. |
+  | $unset | Elimina un atributo de un documento. |
+  | $min | Actualiza el valor de un atributo con el valor mínimo especificado, sólo si el valor actual es mayor que el valor especificado. |
+  | $max | Actualiza el valor de un atributo con el valor máximo especificado, sólo si el valor actual es menor que el valor especificado. |
+  | $currentDate | Establece el valor de un atributo como la fecha y hora actual. |
+
 
 
 
