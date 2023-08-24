@@ -81,8 +81,6 @@ Antes de crear cualquier coleccion es importante saber en cual nos encontramos, 
 
 <div align='center'><img width="300" height="200" src='./img/mongo-1.png' /></div>
 
-<br>
-
 > para este caso utilizaremos un contenedor docker donde se levantara una imagen de mongodb, para acceder a ella debemos ejecutar el comando `docker exec -it [nombre del contendor] mongosh`
 
 Para usar una coleccion o crear una nueva, basta con usar el comando `use()`.
@@ -96,7 +94,6 @@ Aunque tambien podemos utilizar el comando `db.createCollection()`, con este com
 ```js
 db.createCollection("mySecondCollection", {capped : true, size : 2, max : 2})
 ```
-
 > Las configuraciones son variadas y requiere de una lectura minuciosa, por el momento solo optaremos por el comando `use()` que trae consigo una configuracion predeterminada
 
 ### CRUD: create, read, update, delete
@@ -179,6 +176,7 @@ db.createCollection("mySecondCollection", {capped : true, size : 2, max : 2})
     { $rename : { age : 'edad' } } 
   )
   ```
+  <br>
 
   Existen multiples operadores para realizar modificaciones, como es el caso del `$set`, aqui se dejan algunos ejemplos:
 
@@ -193,8 +191,9 @@ db.createCollection("mySecondCollection", {capped : true, size : 2, max : 2})
   | $max | Actualiza el valor de un atributo con el valor máximo especificado, sólo si el valor actual es menor que el valor especificado. |
   | $currentDate | Establece el valor de un atributo como la fecha y hora actual. |
 
-  > Un configuracion interesante en las actualizaciones de documentos es el upsert, sea chequea si un documento ya existe en la coleccion con los parametros de busqueda, de ser asi lo actualiza, sino, insertara un documento nuevo.
+  <br>
 
+  > Un configuracion interesante en las actualizaciones de documentos es el upsert, sea chequea si un documento ya existe en la coleccion con los parametros de busqueda, de ser asi lo actualiza, sino, insertara un documento nuevo.
   ```js
   db.sensor_collection.updateOne(
     {
@@ -227,12 +226,15 @@ db.createCollection("mySecondCollection", {capped : true, size : 2, max : 2})
   <br>
 
   - El comando `deleteMany()` que elimina uno o más documentos que se encuentren en el filtro de la función.
+  <br>
 
   ```js
   db.myCollection.deleteMany(
     { price : 200 }
   )
   ```
+
+  <br>
 
   > Cabe remarcar que en muchas ocasiones se menciona el operador `drop()` para eliminar todos los documentos de una coleccion, el problema es que este operador tambien elimina la coleccion. Si no se desea eliminar la coleccion, tambien podemos usar el comando `deleteMany()` con un objeto vacio dentro de él, es decir, que no hay parametros de filtro por lo cual se eliminan todos los documentos. Tambien existe el comando `remove()` que cumple con la misma funcion.
 
@@ -303,6 +305,7 @@ Existen dos operadores principales a la hora de actualizar arrays, `$push` y `$p
     }
   )
   ```
+  <hr>
   <br>
 
 ## Operadores Especiales
