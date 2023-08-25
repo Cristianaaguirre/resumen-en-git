@@ -8,9 +8,9 @@
 * CRUD con MongoDB
   - [Creando una coleccion](#creando-una-coleccion)
   - [CRUD: create, read, update, delete](#crud-create-read-update-delete)
-  - [Operadores para actualizar arrays](#operadores-para-actualizar-arrays)
 * Operadores especiales
-  - [Operadores $eq y $ne]()
+  - [Actualizar arrays](#operadores-para-actualizar-arrays)
+  - [Operadores de comparacion](#operadores-de-comparacion)
 
 ## ¿Que son las bases de datos NoSQL?
 
@@ -238,9 +238,12 @@ db.createCollection("mySecondCollection", {capped : true, size : 2, max : 2})
 
   > Cabe remarcar que en muchas ocasiones se menciona el operador `drop()` para eliminar todos los documentos de una coleccion, el problema es que este operador tambien elimina la coleccion. Si no se desea eliminar la coleccion, tambien podemos usar el comando `deleteMany()` con un objeto vacio dentro de él, es decir, que no hay parametros de filtro por lo cual se eliminan todos los documentos. Tambien existe el comando `remove()` que cumple con la misma funcion.
 
+  <hr>
   <br>
 
-### Operadores para actualizar arrays
+## Operadores Especiales
+
+### Actualizar arrays
 
 Existen dos operadores principales a la hora de actualizar arrays, `$push` y `$pull`, como sus nombres lo indican push nos permite insertar elementos dentro de un array y pull nos permite extraer elementos dentro de un array. Pero cada uno de ellos necesita de operadores adicionales para funcionar correctamente.
 
@@ -305,12 +308,136 @@ Existen dos operadores principales a la hora de actualizar arrays, `$push` y `$p
     }
   )
   ```
-  <hr>
+
   <br>
 
-## Operadores Especiales
+  > Los operadores `$in` y `$each`, seran explicados luego, en este caso solo sirven de apoyo para los ejemplos
 
-### Operadores $eq y $ne
+  <br>
 
+### Operadores de comparacion
 
+Los operadores de comparación pueden utilizarse para comparar valores en uno o más documentos.
+
+| Operador | Sintaxis | Funcion |
+| --- | --- | --- |
+| $eq | { field : { $eq : value } } | *Igual que*, coincide con los valores que son iguales al valor indicado |
+| $ne | { field : { $ne : value } } | *Distinto*, coincide con los valores que son distintos al valor indicado |
+| $gt | { field : { $gt : value } } | *Mayor que*, coincide con los valores que son mayor al valor indicado |
+| $gte | { field : { $gte : value } } | *Mayor o igual que*, coincide con los valores que son mayor o iguales al valor indicado |
+| $lt | { field : { $lt : value } } | *Menor que*, coincide con los valores que son menores al valor indicado |
+| $lte | { field : { $lte : value } } | *Menor o igual que*, coincide con los valores que son menores o iguales al valor indicado |
+| $lte | { field : { $lte : value } } | *Menor o igual que*, coincide con los valores que son menores o iguales al valor indicado |
+
+### Operadores para arrays
+
+Existen ciertos operadores que nos permiten filtrar busquedas dentro de documentos que contengan arrays.
+
+* Operadores flexibles
+  - `$in` : obtiene documentos cuyos arreglos, objetos o valores especificos coincidan con los valores suministrados.
+
+  ```js
+  db.myCollection.find(
+    { name : { $in : [value, value] } }
+  )
+
+  db.myCollection.find(
+    { books : { $in : [value, value] }}
+  )
+  ```
+
+  <br>
+
+  - `$nin` : obtiene documentos cuyos arreglos, objetos o valores especificos no coincidan con los valores suministrados.
+  <br>
+
+  ```js
+  db.inventory.find(
+    { qty: { $nin: [value, value]} }
+  )
+
+  db.inventory.find(
+    { tags: { $nin: [value, value] } } 
+  )
+  ```
+  <br>
+
+* Operadores disponibles solo para arrays
+  - `$all` : obtiene los documentos que contengan todos los valores especificados, sin importar el orden.
+  <br>
+
+  ```js
+  db.myCollection.find(
+    { tags : { $all : [value, value] } }
+  )
+  ```
+  <br>
+
+  - `$size` : obtiene los documentos que contengan un arreglo con el tamaño especificado.
+  <br>
+
+  ```js
+  db.myCollection.find(
+    { tags : { $size : value } }
+  )
+  ```
+  <br>
+
+  - `$elemMatch` : obtiene los documentos que contengan un arreglo de objetos y necesitamos agregar cierta precision en la busqueda.
+  <br>
+
+  ```js
+  db.myCollection.find(
+    { results : 
+      { 
+        $elemMatch : 
+          { 
+            product : value,
+            score : { $gte : value }
+          }
+      } 
+    }
+  )
+  ```
+  <br>
+
+### Expresiones regulares
+
+Las expresiones regulares son patrones utilizados para encontrar una determinada combinación de caracteres dentro de una cadena de texto. Las expresiones regulares proporcionan una manera muy flexible de buscar o reconocer cadenas de texto.
+
+La expresión regular es una funcionalidad útil de MongoDB. Cuando hablamos de MongoDB, usa PCRE (expresión regular compatible con pearl) como expresión regular:
+
+```js
+[
+  {
+    _id : Objectld( '5bbcf4deed6Ø891ceb5b81c1 ') ,
+    student_name : "Junaid",
+    student_id : 111,
+    student_age : 23
+  },
+  {
+    _id : Objectld ( "Sbbcf4eded6€891ceb5b81c2") ,
+    student_name : "Shahid",
+    student_id : 112,
+    student_age : 32
+  }
+]
+
+  db.myCollection.find(
+    {
+      student_name : { $regex : 'Junaid' }
+    }
+  )
+```
+<br>
+
+Aunque podemos omitir el uso del operador `$regex` y aplicar expresiones regulares mediante el uso de `//`:
+
+```js
+db.myCollection.find(
+  { student_name : \/Junaid\/ }
+)
+```
+
+<br>
 
