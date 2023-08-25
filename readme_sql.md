@@ -63,49 +63,50 @@ Toda jerarquía de base de datos se basa en los siguientes elementos:
 PostgreSQL está más estrechamente acoplado al entorno UNIX que algunos otros sistemas de bases de datos, utiliza las cuentas de usuario nativas para determinar quién se conecta a ella (de forma predeterminada). El programa que se ejecuta en la consola y que permite ejecutar consultas y comandos se llama psql, psql es la terminal interactiva para trabajar con PostgreSQL, es la interfaz de línea de comando o consola principal, así como PgAdmin es la interfaz gráfica de usuario principal de PostgreSQL.
 
 **Comandos de ayuda**
-
+<br>
 En consola los dos principales comandos con los que podemos revisar el todos los comandos y consultas son:
 
-  - `\?`: Con el cual podemos ver la lista de todos los comandos disponibles en consola, comandos que empiezan con backslash ( \ )
-
-  - `\h`: Con este comando veremos la información de todas las consultas SQL disponibles en consola. Sirve también para buscar ayuda sobre una consulta específica, para buscar información sobre una consulta específica basta con escribir `\h` seguido del inicio de la consulta de la que se requiera ayuda, así: `\h ALTER`
+| Comando | Funcion |
+| --- | --- |
+| `\?` | Con el cual podemos ver la lista de todos los comandos disponibles en consola, comandos que empiezan con backslash ( \ ) |
+| `\h` | Con este comando veremos la información de todas las consultas SQL disponibles en consola. Sirve también para buscar ayuda sobre una consulta específica, para buscar información sobre una consulta específica basta con escribir `\h` seguido del inicio de la consulta de la que se requiera ayuda, así: `\h ALTER` |
 
 **Comandos de navegación y consulta de información**
+<br>
 
-  - `\c`: Saltar entre bases de datos
+| Comando | Funcion |
+| --- | --- |
+| `\c` | Saltar entre bases de datos |
+| `\l` | Listar base de datos disponibles |
+| `\dt` | Listar las tablas de la base de datos |
+| `\d <nombre_tabla>` | Describir una tabla |
+| `\dn` | Listar los esquemas de la base de datos actual |
+| `\df` | Listar las funciones disponibles de la base de datos actual |
+| `\dv` | Listar las vistas de la base de datos actual |
+| `\du` | Listar los usuarios y sus roles de la base de datos actual |
 
-  - `\l`: Listar base de datos disponibles
-
-  - `\dt`: Listar las tablas de la base de datos
-
-  - `\d <nombre_tabla>`: Describir una tabla
-
-  - `\dn`: Listar los esquemas de la base de datos actual
-
-  - `\df`: Listar las funciones disponibles de la base de datos actual
-
-  - `\dv`: Listar las vistas de la base de datos actual
-
-  - `\du`: Listar los usuarios y sus roles de la base de datos actual
+<br>
 
 **Comandos de inspección y ejecución**
+<br>
 
-  - `\g`: Volver a ejecutar el comando ejecutando justo antes
+| Comando | Funcion |
+| --- | --- |
+| `\g` | Volver a ejecutar el comando ejecutando justo antes |
+| `\s` | Ver el historial de comandos ejecutados |
+| `\s <nombre_archivo>` | Si se quiere guardar la lista de comandos ejecutados en un archivo de texto plano |
+| `\i <nombre_archivo>` | Ejecutar los comandos desde un archivo |
+| `\e` | Permite abrir un editor de texto plano, escribir comandos y ejecutar en lote. `\e` abre el editor de texto, escribir allí todos los comandos, luego guardar los cambios y cerrar, al cerrar se ejecutarán todos los comandos guardados. |
+| `\ef` | Equivalente al comando anterior pero permite editar también funciones en PostgreSQL |
 
-  - `\s`: Ver el historial de comandos ejecutados
+<br>
 
-  - `\s <nombre_archivo>`: Si se quiere guardar la lista de comandos ejecutados en un archivo de texto plano
+**Comandos para debug, optimización y cerrar la consola**
+<br>
 
-  - `\i <nombre_archivo>`: Ejecutar los comandos desde un archivo
+| Comando | Funcion |
+| --- | --- |
+| `\timing` | Activar / Desactivar el contador de tiempo por consulta |
+| `\q` | Cerrar la consola |
 
-  - `\e`: Permite abrir un editor de texto plano, escribir comandos y ejecutar en lote. `\e` abre el editor de texto, escribir allí todos los comandos, luego guardar los cambios y cerrar, al cerrar se ejecutarán todos los comandos guardados.
 
-  - `\ef`: Equivalente al comando anterior pero permite editar también funciones en PostgreSQL
-
-**Comandos para debug y optimización**
-
-  - `\timing`: Activar / Desactivar el contador de tiempo por consulta
-
-**Comandos para cerrar la consola**
-
-  - `\q`: Cerrar la consola
