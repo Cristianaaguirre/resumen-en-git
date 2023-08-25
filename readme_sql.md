@@ -79,7 +79,7 @@ En consola los dos principales comandos con los que podemos revisar el todos los
 | `\c` | Saltar entre bases de datos |
 | `\l` | Listar base de datos disponibles |
 | `\dt` | Listar las tablas de la base de datos |
-| `\d <nombre_tabla>` | Describir una tabla |
+| `\d <tabla>` | Describir una tabla |
 | `\dn` | Listar los esquemas de la base de datos actual |
 | `\df` | Listar las funciones disponibles de la base de datos actual |
 | `\dv` | Listar las vistas de la base de datos actual |
@@ -94,8 +94,8 @@ En consola los dos principales comandos con los que podemos revisar el todos los
 | --- | --- |
 | `\g` | Volver a ejecutar el comando ejecutando justo antes |
 | `\s` | Ver el historial de comandos ejecutados |
-| `\s <nombre_archivo>` | Si se quiere guardar la lista de comandos ejecutados en un archivo de texto plano |
-| `\i <nombre_archivo>` | Ejecutar los comandos desde un archivo |
+| `\s <archivo>` | Si se quiere guardar la lista de comandos ejecutados en un archivo de texto plano |
+| `\i <archivo>` | Ejecutar los comandos desde un archivo |
 | `\e` | Permite abrir un editor de texto plano, escribir comandos y ejecutar en lote. `\e` abre el editor de texto, escribir allí todos los comandos, luego guardar los cambios y cerrar, al cerrar se ejecutarán todos los comandos guardados. |
 | `\ef` | Equivalente al comando anterior pero permite editar también funciones en PostgreSQL |
 
