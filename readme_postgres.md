@@ -181,7 +181,7 @@ ON t.area_id = a.id;
 Existen diferentes tipos de joins y cada uno de ellos tiene una funcion distinta:
 
 <p align='center'>
-  <img width="500" height="400" src='/img/joins.jpg'/>
+  <img width="600" height="400" src='/img/joins.jpg'/>
 </p>
 
 <br>
