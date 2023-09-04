@@ -10,6 +10,8 @@
   - [FROM](#from)
   - [JOIN](#join)
   - [WHERE](#where)
+  - [ORDER BY](#order-by)
+  - [GROUP BY y LIMIT](#group-by-y-limit)
 
 Postgres es un motor de bases de datos, existen tres conceptos importantes en torno a las bases de datos:
 
