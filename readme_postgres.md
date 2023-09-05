@@ -457,7 +457,7 @@ LEFT JOIN basket_b
 <br>
 
 <div align='center'>
-  <img width="350" height="200" src='/img/left-join-example.png'/>
+  <img width="350" height="200" src='/img/left-join.png'/>
 </div>
 
 The `LEFT JOIN` comienza seleccionando datos de la tabla izquierda. Compara los valores de la columna *fruit_a* con los valores de la columna *fruit_b* de la tabla *basket_b*.
@@ -487,7 +487,7 @@ WHERE b IS NULL;
 <br>
 
 <div align='center'>
-  <img width="350" height="200" src='/img/join-left-outer-join.png'/>
+  <img width="350" height="200" src='/img/left-outer-join.png'/>
 </div>
 
 <br>
@@ -516,7 +516,7 @@ RIGHT JOIN basket_b
 <br>
 
 <div align='center'>
-  <img width="350" height="200" src='/img/join-right-join.png'/>
+  <img width="350" height="200" src='/img/right-join.png'/>
 </div>
 
 <br>
@@ -540,7 +540,7 @@ WHERE a IS NULL;
 <br>
 
 <div align='center'>
-  <img width="350" height="200" src='/img/join-right-outer-join.png'/>
+  <img width="350" height="200" src='/img/right-outer-join.png'/>
 </div>
 
 <br>
@@ -563,7 +563,7 @@ FULL OUTER JOIN basket_b
 <br>
 
 <div align='center'>
-  <img width="350" height="200" src='/img/Join-full-outer-join-example.png'/>
+  <img width="350" height="200" src='/img/full-outer-join.png'/>
 </div>
 
 <br>
@@ -585,7 +585,7 @@ WHERE a IS NULL OR b IS NULL;
 <br>
 
 <div align='center'>
-  <img width="350" height="200" src='/img/join-full-outer-join.png'/>
+  <img width="350" height="200" src='/img/full-outer-join-where.png'/>
 </div>
 
 <br>
