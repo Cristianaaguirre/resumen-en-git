@@ -8,10 +8,12 @@
 * Operaciones Basicas
   - [SELECT](#select)
   - [FROM](#from)
-  - [JOIN](#join)
   - [WHERE](#where)
   - [ORDER BY](#order-by)
   - [GROUP BY y LIMIT](#group-by-y-limit)
+
+* JOIN
+  - []()
 
 Postgres es un motor de bases de datos, existen tres conceptos importantes en torno a las bases de datos:
 
@@ -165,27 +167,6 @@ Al usar alias de tabla en la instruccion `FROM`, podría escribir la consulta co
 SELECT c.ID, o.ID
 FROM familias_1 AS c, familias_2 AS o;
 ```
-<br>
-
-### JOIN
-
-`JOIN` es el proceso de tomar datos de varias tablas y colocarlos en una vista generada. Por tanto, una instrucción de `JOIN` en un comando `SELECT` combina las columnas entre una o más tablas en una base de datos relacional y retorna a un conjunto de datos.
-
-Este comando se utiliza en conjunto con la instruccion `FROM` para poder relacionar las tablas en base a un criterio:
-
-```sql
-SELECT *
-FROM trabajadores AS t
-JOIN area AS a 
-ON t.area_id = a.id;
-```
-
-Existen diferentes tipos de joins y cada uno de ellos tiene una funcion distinta:
-
-<p align='center'>
-  <img width="600" height="400" src='/img/joins.jpg'/>
-</p>
-
 <br>
 
 ### WHERE
@@ -384,6 +365,84 @@ Si el segundo argumento supera la cantidad de registros de la tabla, se limita h
 SELECT *
 FROM libros
 LIMIT 0,4;
+```
+
+<br>
+
+La instruccion `LIMIT` tambien puede combinarse con el `DELETE`. Por ejemplo:
+
+<br>
+
+```sql
+DELETE FROM tabla
+LIMIT 2;
+```
+
+<br>
+
+Incluso podemos ordenar los registros en torno a un valor y a partir de alli podemos ejecutar la instruccion `DELETE`:
+
+<br>
+
+```sql
+DELETE FROM tabla
+ORDER BY dato
+LIMIT 2;
+```
+
+<br>
+
+## JOIN
+
+`JOIN` es el proceso de tomar datos de varias tablas y colocarlos en una vista generada. Por tanto, una instrucción de `JOIN` en un comando `SELECT` combina las columnas entre una o más tablas en una base de datos relacional y retorna a un conjunto de datos.
+
+Este comando se utiliza en conjunto con la instruccion `FROM` para poder relacionar las tablas en base a un criterio:
+
+```sql
+SELECT *
+FROM trabajadores AS t
+JOIN area AS a 
+ON t.area_id = a.id;
+```
+
+Sin embargo existen diferentes tipos de `join` por lo cual tomaremos un ejemplo practico y a travez de el comenzaremos a explicar en detalle cada tipo de `join`. Asumamos que tenemos dos tablas:
+
+<br>
+
+<div style='display:flex'>
+  <img width="300" height="300" src='/img/table_1.png'/>
+  <img width="300" height="300" src='/img/table_2.png'/>
+</div>
+
+<br>
+
+### INNER JOIN
+
+El `INNER JOIN` o `JOIN` permite traer los registros que coinciden con el criterio establecido
+
+```sql
+SELECT * 
+FROM table_1 AS t1 INNER JOIN table_2 AS t2
+ON t1.name = t2.name
+```
+```
+id  name       id   name
+--  ----       --   ----
+1   Pirate     2    Pirate
+
+3   Ninja      4    Ninja
+```
+
+### FULL OUTER JOIN 
+
+La `FULL OUTER JOIN` produce el conjunto de todos los registros de la Tabla A y la Tabla B, con registros coincidentes de ambos lados cuando estén disponibles. Si no hay ninguna coincidencia, el lado que falta contendrá null.
+
+<br>
+
+```sql
+SELECT * 
+FROM table_1 AS t1 FULL OUTER JOIN table_2 AS t2
+ON t1.name = t2.name
 ```
 
 <br>
