@@ -249,7 +249,7 @@ Existen dos operadores principales a la hora de actualizar arrays, `$push` y `$p
 
 - `$push`:
 
-<br>
+  <br>
 
   ```js
   db.myCollection.update(
@@ -279,6 +279,7 @@ Existen dos operadores principales a la hora de actualizar arrays, `$push` y `$p
   )
   ```
   <br>
+  
 - `$pull`:
   <br>
 
@@ -335,10 +336,9 @@ Los operadores de comparación pueden utilizarse para comparar valores en uno o 
 Existen ciertos operadores que nos permiten filtrar busquedas dentro de documentos que contengan arrays.
 
 * Operadores flexibles
-
-<br>
   
   - `$in` : obtiene documentos cuyos arreglos, objetos o valores especificos coincidan con los valores suministrados.
+  <br>
 
   ```js
   db.myCollection.find(
