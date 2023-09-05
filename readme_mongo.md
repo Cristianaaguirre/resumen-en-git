@@ -336,7 +336,7 @@ Existen ciertos operadores que nos permiten filtrar busquedas dentro de document
 
 * Operadores flexibles
 
-  <br>
+<br>
   
   - `$in` : obtiene documentos cuyos arreglos, objetos o valores especificos coincidan con los valores suministrados.
 
