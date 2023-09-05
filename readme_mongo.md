@@ -1,16 +1,24 @@
-# RESUMEN DE MONGODB
+# RESUMEN INTRODUCTORIO DE MONGODB
 
 * ¿Que son las bases de datos NoSQL?
   - [Las bases de datos no relacionales](#las-bases-de-datos-no-relacionales)
   - [Tipos de bases de datos NoSQL](#tipos-de-bases-de-datos-nosql)
   - [Bases de datos documentales](#bases-de-datos-documentales)
   - [Ventajas y Desventajas](#ventajas-y-desventajas)
+
 * CRUD con MongoDB
   - [Creando una coleccion](#creando-una-coleccion)
   - [CRUD: create, read, update, delete](#crud-create-read-update-delete)
+  - [Consultas en sub documentos](#consultas-en-sub-documentos)
+  - [Funciones sort(), limit(), skip(), count() y projection()](#funciones-sort-limit-skip-count-y-projection)
+
 * Operadores especiales
-  - [Actualizar arrays](#operadores-para-actualizar-arrays)
+  - [Actualizar arrays](#actualizar-arrays)
   - [Operadores de comparacion](#operadores-de-comparacion)
+  - [Operadores para arrays](#operadores-para-arrays)
+  - [Operador $regex](#operador-regex)
+  - [Operadores logicos](#operadores-logicos)
+  - [Operador $exp](#operador-exp)
 
 ## ¿Que son las bases de datos NoSQL?
 
@@ -238,8 +246,140 @@ db.createCollection("mySecondCollection", {capped : true, size : 2, max : 2})
 
   > Cabe remarcar que en muchas ocasiones se menciona el operador `drop()` para eliminar todos los documentos de una coleccion, el problema es que este operador tambien elimina la coleccion. Si no se desea eliminar la coleccion, tambien podemos usar el comando `deleteMany()` con un objeto vacio dentro de él, es decir, que no hay parametros de filtro por lo cual se eliminan todos los documentos. Tambien existe el comando `remove()` que cumple con la misma funcion.
 
-  <hr>
-  <br>
+### Consultas en sub documentos
+
+Las “query in subdocs” en MongoDB se refieren a la capacidad de realizar consultas o búsquedas en documentos secundarios (subdocumentos) dentro de un documento principal.
+
+En MongoDB, los documentos pueden contener otros documentos anidados, lo que permite estructurar la información de manera más compleja y jerárquica. Cuando se realizan consultas en subdocumentos, se pueden buscar documentos que cumplan ciertas condiciones en campos específicos de los subdocumentos, en lugar de buscar solo en los campos del documento principal.
+
+Para realizar una consulta en subdocumentos, se utiliza el operador de punto (".") para indicar el campo específico del subdocumento que se desea buscar. Por ejemplo, si se tiene un documento que contiene un subdocumento “address” que a su vez tiene un campo “city”, se puede buscar todos los documentos que tengan una ciudad específica utilizando la siguiente consulta:
+
+```js
+db.myCollection.find({"address.city": "New York"})
+```
+
+Esta consulta buscará todos los documentos que contengan un subdocumento “address” con el campo “city” igual a “New York”.
+
+Las consultas en subdocumentos pueden ser muy útiles en situaciones en las que se tiene información estructurada jerárquicamente, como en la información de direcciones de un cliente en un sistema de comercio electrónico. Incluso, si uno de los campos es un array de sub documentos, podemos utilizar la siguiente sintaxis:
+
+```js
+{
+  electrodomesticos : [
+    {
+      name : 'heladeras',
+      componentes : [
+        { enchufe : 'A1' }
+      ]
+    }
+  ]
+}
+
+// Notas como en el campo electrodomesticos podemos acceder al primer elemento mediante la notacion '.0' y de alli ir anidando las siguientes consultas
+
+db.myCollection.find(
+  {
+    'electrodomesticos.0.componentes.enchufe' : 'A1'
+  }
+)
+```
+
+<br>
+
+### Funciones sort(), limit(), skip(), count() y projection()
+
+A veces, al obtener datos de la base de datos, podemos necesitar ordenarlos, obtener un cierto número de registros o contarlos, omitir algunos registros o determinar que caracteristicas necesitamos. En este caso, MongoDB tiene los siguientes métodos: sort(), limit(), skip(), count() y projection().
+
+* `sort()` : Esta funcion nos permite determinar el orden de los registros en base al criterio que establezcamos. Si por ejemplo queremos ordenar los registros en base a un valor numerico, usaremos 1 o -1 para determinar si es de forma ascendente o descendente:
+<br>
+
+```js
+
+// ascendente
+db.myCollection
+  .find({})
+  .sort( { age : 1 } )
+
+// descendente
+db.myCollection
+  .find({})
+  .sort( { age : -1 } )
+```
+
+<br>
+
+* `limit()` : Esta funcion nos permite limitar el numero de documentos que seran extraidos de una coleccion:
+<br>
+
+```js
+
+// se muestran o extraen los primeros 4 registros encontrados
+db.myCollection
+  .find({})
+  .limit( 4 )
+```
+
+<br>
+
+* `skip()` : Esta funcion nos permite omitir el numero de documentos que seran extraidos de una collecion:
+
+<br>
+
+```js
+// se omiten los primeros 3 registros
+db.myCollection
+  .find({})
+  .skip( 3 )
+```
+
+<br>
+
+* `count()` : Esta funcion nos permite contar la cantidad de registros extraidos de la base de datos:
+<br>
+
+```js
+// se cuentan la cantidad de registros cuyo nombre sea igual a 'random'
+db.myCollection
+  .find({ name : 'random' })
+  .count()
+```
+
+* `projection()` : Esta funcion nos permite determinar los campos que seran extraidos de los documentos. No obstante la proyeccion tambien puede ser establecida durante la busqueda sin necesidad de usar esta funcion. Para determinar si un campo sera visible o no, se debe utilizar los valores `1` o `0`:
+
+<br>
+
+```js
+// Sin la funcion projection()
+db.myCollection.find(
+  {},
+  { _id : 1, name : 1, age : 0 }
+)
+
+// Con la funcion projection()
+
+db.myCollection
+  .find()
+  .projection( { _id : 1, name : 1, age : 0 } )
+```
+
+<br>
+
+Es importante aclarar que todas estas funciones pueden ser anidadas entre si, pero hay que tener en cuenta que la salida de una funcion es el dato de entrada a la siguiente por lo cual debemos tener mucho cuidado cuando las utilizamos.
+
+<br>
+
+```js
+db.myCollection
+  .find( { name : 'random' } ) // encuentra los registros con el nombre 'random'
+  .skip( 3 ) // omite los primeros 3 registros
+  .limit( 2 ) // solo toma los 2 primeros registros posteriores al skip
+  .sort( -1 ) // ordena los registros de manera descendentes
+  .projection( { _id : 0 } ) // se mostraran todos los campos disponibles excepto el id
+```
+
+<br>
+
+<hr>
+<br>
 
 ## Operadores Especiales
 
@@ -248,7 +388,6 @@ db.createCollection("mySecondCollection", {capped : true, size : 2, max : 2})
 Existen dos operadores principales a la hora de actualizar arrays, `$push` y `$pull`, como sus nombres lo indican push nos permite insertar elementos dentro de un array y pull nos permite extraer elementos dentro de un array. Pero cada uno de ellos necesita de operadores adicionales para funcionar correctamente.
 
 - `$push`:
-
   <br>
 
   ```js
@@ -405,7 +544,7 @@ Existen ciertos operadores que nos permiten filtrar busquedas dentro de document
   ```
   <br>
 
-### Expresiones regulares
+### Operador $regex
 
 Las expresiones regulares son patrones utilizados para encontrar una determinada combinación de caracteres dentro de una cadena de texto. Las expresiones regulares proporcionan una manera muy flexible de buscar o reconocer cadenas de texto.
 
@@ -445,3 +584,130 @@ db.myCollection.find(
 
 <br>
 
+### Operadores Logicos
+
+Los operadores lógicos nos ayudan a realizar filtrados considerando condiciones lógicas como el OR y AND. Los operadores lógicos soportados son:
+
+* `$and` : Filtra documentos que cumplan todas las condiciones descritas en un array de elementos.
+  <br>
+
+  De manera implicita, ya hemos usado el operador `$and` para realizar busquedas mediante la funcion `find()`
+  <br>
+
+  ```js
+  //and implicito
+  db.myCollection.find(
+    {
+      qty : { $gt : 15 },
+      tags : { $in : ['book'] }
+    }
+  )
+
+  //and explicito
+  db.arr_collection.find(
+    {
+      $and : [
+        { qty : { $gt : 15 } },
+        { tags : { $in : ['book'] } }
+      ]
+    }
+  )
+  ```
+
+<br>
+
+* `$or` : Filtra documentos que cumplan con alguna de las condiciones descritas en un array de elementos.
+  <br>
+
+  ```js
+    db.arr_collection.find(
+    {
+      $or : [
+        { qty : { $lt : 50 } },
+        { tags : { $in : ['book'] } }
+      ]
+    }
+  )
+  ```
+
+<br>
+
+* `$nor` : Filtra los elementos que no cumplan con ninguna de las condiciones descritas en un array de elementos.
+  <br>
+
+  ```js
+  db.arr_collection.find(
+    {
+      $nor : [
+        { qty : { $lt : 20 } },
+        { tags : { $in : [ 'book' ] } }
+      ]
+    }
+  )
+  ```
+
+<br>
+
+* `$not` : Excluye un elemento en especifico y no tiene forma de array
+  <br>
+
+  ```js
+  db.arr_collection.find(
+    {
+      'item.name' : { $not : /mn/ }
+    },
+    {
+      _id : 0,
+      item : 1
+    }
+  )
+  ```
+
+### Operador $exp
+
+Este operador sirve para poder hacer referencia a los valores que tienen los campos de un documento, en una consulta. Tambien sirve para ampliar la funcionalidad de algunos operadores.
+
+Veamos el siguiente objeto
+
+```js
+{
+  name : 'cristian',
+  edad : 27,
+  mayor : true,
+  gastos : 1200,
+  dinero_disponible : 1000 
+}
+
+```
+
+<br>
+
+Si quisieramos saber si el dinero disponible es mayor a los gastos fijos, deberiamos usar la siguiente operacion
+<br>
+
+```js
+db.myCollection.find(
+  {
+    $exp : {
+      $gte : ['$gastos' , '$dinero_disponible']
+    }
+  }
+)
+```
+
+<br>
+
+El operador `$eq` normalmente se usa con una sintaxis diferente, pero en este caso con el operador $expr lo hacemos de esta forma, por cada documento. se evaluara una condicion en donde si el campo edad en un documento es igual al campo que tiene las llegadas tarde, entonces se agregara al resultado de la consulta.
+
+Incluso podemos anidar diferentes consultas
+<br>
+
+```js
+db.myCollection.find(
+  {
+    $exp : { $lt : ['$gastos', '$dinero_disponible']  },
+    edad : { $gt : 18 },
+    mayor : true
+  }
+)
+```
