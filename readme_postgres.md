@@ -13,7 +13,12 @@
   - [GROUP BY y LIMIT](#group-by-y-limit)
 
 * JOIN
-  - []()
+  - [JOIN](#join)
+  - [LEFT JOIN](#left-join)
+  - [LEFT OUTER JOIN](#left-outer-join)
+  - [RIGHT JOIN](#right-join)
+  - [RIGHT OUTER JOIN](#right-outer-join)
+  - [FULL OUTER JOIN](#full-outer-join)
 
 Postgres es un motor de bases de datos, existen tres conceptos importantes en torno a las bases de datos:
 
