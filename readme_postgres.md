@@ -418,31 +418,184 @@ Sin embargo existen diferentes tipos de `join` por lo cual tomaremos un ejemplo 
 
 ### INNER JOIN
 
-El `INNER JOIN` o `JOIN` permite traer los registros que coinciden con el criterio establecido
-
-```sql
-SELECT * 
-FROM table_1 AS t1 INNER JOIN table_2 AS t2
-ON t1.name = t2.name
-```
-```
-id  name       id   name
---  ----       --   ----
-1   Pirate     2    Pirate
-
-3   Ninja      4    Ninja
-```
-
-### FULL OUTER JOIN 
-
-La `FULL OUTER JOIN` produce el conjunto de todos los registros de la Tabla A y la Tabla B, con registros coincidentes de ambos lados cuando estén disponibles. Si no hay ninguna coincidencia, el lado que falta contendrá null.
+La `INNER JOIN` o `JOIN` examina cada fila de la primera tabla (*basket_a*). Compara el valor de la columna fruit_a con el valor de la columna fruit_b de cada fila de la segunda tabla (*basket_b*). Si estos valores son iguales, la unión interna crea una nueva fila que contiene columnas de ambas tablas y añade esta nueva fila al conjunto de resultados.
 
 <br>
 
 ```sql
-SELECT * 
-FROM table_1 AS t1 FULL OUTER JOIN table_2 AS t2
-ON t1.name = t2.name
+SELECT 
+    a,fruit_a,
+    b,fruit_b
+FROM basket_a
+INNER JOIN basket_b
+  ON fruit_a = fruit_b;
 ```
+<br>
+
+<div align='center'>
+  <img width="350" height="200" src='/img/inner-join.png'/>
+</div>
+
+<br>
+
+### LEFT JOIN
+
+La siguiente sentencia utiliza la cláusula `LEFT JOIN` para unir la tabla *basket_a* con la tabla *basket_b*. En el contexto de la unión izquierda, la primera tabla se denomina tabla izquierda y la segunda tabla se denomina tabla derecha.
+
+
+<br>
+
+```sql
+SELECT
+    a,fruit_a,
+    b,fruit_b
+FROM basket_a
+LEFT JOIN basket_b 
+  ON fruit_a = fruit_b;
+```
+
+<br>
+
+<div align='center'>
+  <img width="350" height="200" src='/img/left-join-example.png'/>
+</div>
+
+The `LEFT JOIN` comienza seleccionando datos de la tabla izquierda. Compara los valores de la columna *fruit_a* con los valores de la columna *fruit_b* de la tabla *basket_b*.
+
+Si estos valores son iguales, `LEFT JOIN` crea una nueva fila que contiene columnas de ambas tablas y añade esta nueva fila al conjunto de resultados.
+
+En caso de que los valores no sean iguales, `LEFT JOIN` también crea una nueva fila que contiene columnas de ambas tablas y la añade al conjunto de resultados. Sin embargo, rellena las columnas de la tabla derecha (basket_b) con null.
+
+<br>
+
+### LEFT OUTER JOIN
+
+Para seleccionar filas de la tabla izquierda que no tienen filas coincidentes en la tabla derecha, se utiliza la unión izquierda con una cláusula WHERE. 
+
+<br>
+
+```sql
+SELECT
+    a,fruit_a,
+    b,fruit_b
+FROM basket_a
+LEFT JOIN basket_b 
+  ON fruit_a = fruit_b
+WHERE b IS NULL;
+```
+
+<br>
+
+<div align='center'>
+  <img width="350" height="200" src='/img/join-left-outer-join.png'/>
+</div>
+
+<br>
+
+### RIGHT JOIN
+
+La `RIGHT JOIN` es una versión inversa de `LEFT JOIN`. Empieza seleccionando datos de la tabla derecha. Compara cada valor de la columna *fruit_b* de cada fila de la tabla derecha con cada valor de la columna *fruit_a* de cada fila de la tabla *fruit_a*. Si estos valores son iguales, se crea una nueva fila que contiene columnas de ambas tablas.
+
+Si estos valores son iguales, la `RIGHT JOIN` crea una nueva fila que contiene columnas de ambas tablas.
+
+En caso de que estos valores no sean iguales, la `RIGHT JOIN` también crea una nueva fila que contiene columnas de ambas tablas. Sin embargo, rellena las columnas de la tabla izquierda con NULL.
+
+La siguiente sentencia utiliza la `RIGHT JOIN` para unir la tabla *basket_a* con la tabla *basket_b*:
+
+<br>
+
+```sql
+SELECT
+    a,fruit_a,
+    b,fruit_b
+FROMbasket_a
+RIGHT JOIN basket_b 
+  ON fruit_a = fruit_b;
+```
+
+<br>
+
+<div align='center'>
+  <img width="350" height="200" src='/img/join-right-join.png'/>
+</div>
+
+<br>
+
+### RIGHT OUTER JOIN
+
+Del mismo modo, puede obtener filas de la tabla derecha que no tengan filas coincidentes de la tabla izquierda añadiendo una cláusula WHERE como se indica a continuación:
+
+<br>
+
+```sql
+SELECT
+    a,fruit_a,
+    b,fruit_b
+FROM basket_a
+RIGHT JOIN basket_b 
+  ON fruit_a = fruit_b
+WHERE a IS NULL;
+```
+
+<br>
+
+<div align='center'>
+  <img width="350" height="200" src='/img/join-right-outer-join.png'/>
+</div>
+
+<br>
+
+### FULL OUTER JOIN
+
+La `FULL OUTER JOIN` o *full join* devuelve un conjunto de resultados que contiene todas las filas de las tablas izquierda y derecha, con las filas coincidentes de ambos lados si están disponibles. En caso de que no haya ninguna coincidencia, las columnas de la tabla se rellenarán con NULL.
+
+<br>
+
+```sql
+SELECT
+    a,fruit_a,
+    b,fruit_b
+FROM basket_a
+FULL OUTER JOIN basket_b 
+  ON fruit_a = fruit_b;
+```
+
+<br>
+
+<div align='center'>
+  <img width="350" height="200" src='/img/Join-full-outer-join-example.png'/>
+</div>
+
+<br>
+
+Para devolver filas en una tabla que no tienen filas coincidentes en la otra, se utiliza la unión completa con una cláusula WHERE como ésta:
+
+<br>
+
+```sql
+SELECT
+    a,fruit_a,
+    b,fruit_b
+FROM basket_a
+FULL OUTER JOIN basket_b 
+  ON fruit_a = fruit_b
+WHERE a IS NULL OR b IS NULL;
+```
+
+<br>
+
+<div align='center'>
+  <img width="350" height="200" src='/img/join-full-outer-join.png'/>
+</div>
+
+<br>
+
+La siguiente imagen muestra todas las uniones PostgreSQL que hemos discutido hasta ahora con la sintaxis detallada:
+
+<br>
+
+<div align='center'>
+  <img width="350" height="200" src='/img/sqljoin.jpeg'/>
+</div>
 
 <br>
