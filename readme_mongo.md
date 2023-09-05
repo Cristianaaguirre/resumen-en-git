@@ -248,7 +248,8 @@ db.createCollection("mySecondCollection", {capped : true, size : 2, max : 2})
 Existen dos operadores principales a la hora de actualizar arrays, `$push` y `$pull`, como sus nombres lo indican push nos permite insertar elementos dentro de un array y pull nos permite extraer elementos dentro de un array. Pero cada uno de ellos necesita de operadores adicionales para funcionar correctamente.
 
 - `$push`:
-  <br>
+
+<br>
 
   ```js
   db.myCollection.update(
