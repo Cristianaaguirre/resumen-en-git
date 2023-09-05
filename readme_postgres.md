@@ -409,9 +409,9 @@ Sin embargo existen diferentes tipos de `join` por lo cual tomaremos un ejemplo 
 
 <br>
 
-<div style='display:flex'>
-  <img width="300" height="300" src='/img/table_1.png'/>
-  <img width="300" height="300" src='/img/table_2.png'/>
+<div align='center'>
+  <img width="300" height="200" src='/img/table_1.png'/>
+  <img width="300" height="200" src='/img/table_2.png'/>
 </div>
 
 <br>
