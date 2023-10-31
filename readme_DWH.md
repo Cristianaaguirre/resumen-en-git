@@ -57,7 +57,7 @@ Nos propone pasar directamente de un area de Staging a la creacion de los data m
 De todas formas, Ralph Kimball propone una serie de fases durante la elaboracion de estos recursos:
 
 <p align='center'>
-  <img width="450" height="300" src="./img/ralph-kimball.png"/>
+  <img width="500" height="340" src="./img/ralph-kimball.png"/>
 </p>
 
 * Hefesto:
@@ -65,7 +65,7 @@ De todas formas, Ralph Kimball propone una serie de fases durante la elaboracion
 La metodologia hefesto propone la siguiente secuencia o pasos durante la elaboracion del DWH:
 
 <p align='center'>
-  <img width="450" height="300" src="./img/hefesto.png/>
+  <img width="500" height="340" src="./img/hefesto.png" />
 </p>
 
 Si bien son diversas las fuentes y metodologias a la hora de elaborar los DWH, se pueden tomar lo mejor de cada uno o lo que uno crea necesario en base a los requerimientos del proyecto. Hay que recordar de que son muchas las variables a tener en cuenta cuando queremos elaborar un proyecto, ya sea el tiempo, el presupuesto, el tamaño del equipo, los requerimientos del cliente y base a lo que se puede realizar, etc. 
